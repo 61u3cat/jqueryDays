@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" />
+</head>
+
+<body>
+
+    <div class="container">
+        <form>
+            <div class="form-group">
+                <label for="fname">First Name</label>
+                <input type="fname" class="form-control" id="fname" aria-describedby="namehelp"
+                    placeholder="Enter first name">
+                <div class="text-danger invalid_first_name d-none">
+                    fillup this
+                </div>
+                <div class="form-group">
+                    <label for="lname">Last Name</label>
+                    <input type="lname" class="form-control" id="lname" aria-describedby="namehelp"
+                        placeholder="Enter last name">
+                    <div class="text-danger invalid_last_name d-none">
+                        start without space
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="Enter email">
+                    <div class="text-danger invalid_email d-none">
+                        Looks very bad!
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <div class="text-danger invalid_pass d-none">
+                        pass required!
+                    </div>
+                </div>
+                <br>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.min.js"
+        integrity="sha512-EKWWs1ZcA2ZY9lbLISPz8aGR2+L7JVYqBAYTq5AXgBkSjRSuQEGqWx8R1zAX16KdXPaCjOCaKE8MCpU0wcHlHA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    <script>
+        $('.btn').click(function (e) {
+            e.preventDefault();
+            let fnames = $('#fname').val();
+            fnames.trim();
+            
+            let lnames = $('#lname').val();
+            console.log(lnames.trim());
+            lnames.trim()
+           
+
+            let email = $('#exampleInputEmail1').val();
+
+            if (email.match(
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+            )) {
+                $('.invalid_email').addClass('d-none');
+            } else {
+                $('.invalid_email').removeClass('d-none');
+            }
+            let pass = $('#exampleInputPassword1').val();
+            if (pass == '') {
+                $('.invalid_pass').removeClass('d-none'); //required this field
+            } else {
+                $('.invalid_pass').addClass('d-none');
+            }
+        })
+    </script>
+</body>
+
+</html>
