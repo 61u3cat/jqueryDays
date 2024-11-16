@@ -56,6 +56,44 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         $(document).ready(function () {
+
+
+            $("#exampleInputPassword1").keyup(function () {
+                let pass = $(this).val();
+                var strength = 0;
+
+                if (pass.length >= 8) strength += 1;
+                if (pass.match(/[a-z]+/)) strength += 1;
+                if (pass.match(/[A-Z]+/)) strength += 1;
+                if (pass.match(/[0-9]+/)) strength += 1;
+                if (pass.match(/[\W]+/)) strength += 1;
+
+
+                var strengthText = "";
+                switch (strength) {
+                    case 0:
+                    case 1:
+                        strengthText = "Very Weak";
+                        break;
+                    case 2:
+                        strengthText = "Weak";
+                        break;
+                    case 3:
+                        strengthText = "Medium";
+                        break;
+                    case 4:
+                        strengthText = "Strong";
+                        break;
+                    case 5:
+                        strengthText = "Very Strong";
+                        break;
+                }
+
+                $('.invalid_pass').removeClass('d-none').text(strengthText);
+            });
+
+
+
             $('.btn').click(function (e) {
                 e.preventDefault();
                 let errors;                 //ekhane errors always false
@@ -76,15 +114,15 @@
                     $('.invalid_pass').removeClass('d-none');   //thaole ekhne error show korbe means display none remove hobe
                     $('.invalid_pass').html("<p>Password is Required</p>");
                     errors = true;
-                } else if (pass.length <= 6) {
+                } else if (pass.length <= 6) {                      //pass er length less or equal to 6 hole error ashbe means display none removed
                     $('.invalid_pass').removeClass('d-none');   //thaole ekhne error show korbe means display none remove hobe
                     $('.invalid_pass').html("<p>password should be greater than 6 or equal 6</p>");
                     errors = true;
-                }else if (!pattern.test(pass)) {
+                } else if (!pattern.test(pass)) {               //else if pattern er symbol gulo jodi password test er por okhan ena thake then,
                     $('.invalid_pass').removeClass('d-none');   //thaole ekhne error show korbe means display none remove hobe
                     $('.invalid_pass').html("<p>password must include uppercase and lowecase leetter</p>");
                     errors = true;
-                }else {
+                } else {
                     $('.invalid_pass').addClass('d-none');      // d-none add hobe means error false hobe 
                 }
 
