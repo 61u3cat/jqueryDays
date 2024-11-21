@@ -62,12 +62,12 @@
 
 
             $('.btn').on('click', function () {
-                let cdd = new Date($('#countdownDate').val()).getTime(); //ekahne input er date store hocche
+                let cdd = new Date($('#countdownDate').val()).getTime(); //ekahne input er date store hocche jeta amra set set korbo as date or time hishebe
                 console.log(cdd);
-                let x = setInterval(function () {
+                let x = setInterval(function () { //setinterval is kinda function where time will be auto updating 
 
-                    let now = new Date();
-                    let distance = cdd - now;
+                    let now = new Date();       //date function use kore ekta current date nisi
+                    let distance = cdd - now;   //set kora date theke upcoming(date) minus kortesi 
                     // console.log(distance);
                     let days = Math.floor(distance / (1000 * 60 * 60 * 24));
                     let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));

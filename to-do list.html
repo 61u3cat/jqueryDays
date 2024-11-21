@@ -27,10 +27,13 @@
                                 <input type="text" class="form-control" id="task" required>
                             </div>
                             <button type="submit" class="btn btn-primary">Add Task</button>
+                            <button type="button" class="btn btn-success d-none">Submit</button>
                         </form>
                         <ul id="task-list" class="list-group mt-3">
+
                             <!-- Tasks will be dynamically added here -->
                         </ul>
+                        <ul button type="button" class="btn btn-success d-none" id="submitB">Submit</button></ul>
                     </div>
                 </div>
             </div>
@@ -51,15 +54,25 @@
                 if (task != '') {
                     $('#task-list').append('<li class="list-group-item">' + task + '<button class="btn btn-danger float-end delete-task">Delete</button></li>')
                     $('#task').val('');
-                }else {
+                    if (task) {
+                        $('#submitB').removeClass('d-none');
+
+                    }
+
+                } else {
                     return;
                 }
             });
-
             $('body').on('click', '.delete-task', function () {
                 $(this).closest('li').remove();
-
             });
+
+            $('body').on('click', '#submitB', function () {
+                let tasks = [];
+                $('#task-list li').each(function () {
+                    tasks.push($(this).text().replace('Delete', '').trim());
+                }); alert('Tasks:\n' + tasks.join('\n'));
+            })
         });
 
     </script>
