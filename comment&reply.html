@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Comment Section</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" />
+    <style>
+        .comment-box {
+            margin-bottom: 20px;
+        }
+
+        .reply-box {
+            margin-left: 20px;
+        }
+
+        .reply-form {
+            display: none;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Comments</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="comment-form">
+                            <div class="mb-3">
+                                <label for="comment" class="form-label">Add a comment</label>
+                                <textarea class="form-control" id="comment" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                        <ul id="comment-list" class="list-group mt-3">
+                            <!-- Comments will be dynamically added here -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#comment-form').on('submit', function (e) {
+                e.preventDefault();
+                let comment = $('#comment').val();          //comment e value rakhse
+                if (comment) {  //comment jodi hoy
+                    $('#comment-list').append(`                     
+                        <li class="list-group-item comment-box">
+                           ${comment}
+                            <button class="btn btn-danger btn-sm float-end delete-comment">Delete</button>
+                            <button class="btn btn-warning btn-sm float-end reply-comment">Reply</button>
+                            <div class="reply-form">
+                                <textarea class="form-control reply-text" rows="2" required></textarea>
+                                <button class="btn btn-success btn-sm submit-reply mt-2">Submit</button>
+                            </div>
+                            <ul class="list-group reply-list mt-2">
+                                <!-- Replies will be dynamically added here -->
+                            </ul>
+                        </li>
+                    `);
+                    $('#comment').val('');
+                }
+            });
+
+            $('body').on('click', '.delete-comment', function () {
+                $(this).closest('li').remove();
+            });
+
+            $('body').on('click', '.reply-comment', function () {
+                $(this).siblings('.reply-form').toggle();
+            });
+
+            $('body').on('click', '.submit-reply', function () {
+                let replyText = $(this).siblings('.reply-text').val();
+                if (replyText) {
+                    $(this).closest('li').find('.reply-list').append(`
+                        <li class="list-group-item reply-box">
+                            ${replyText}
+                            <button class="btn btn-danger btn-sm float-end delete-comment">Delete</button>
+                            <button class="btn btn-warning btn-sm float-end reply-comment">Reply</button>
+                            <div class="reply-form">
+                                <textarea class="form-control reply-text" rows="2" required></textarea>
+                                <button class="btn btn-success btn-sm submit-reply mt-2">Submit</button>
+                            </div>
+                            <ul class="list-group reply-list mt-2">
+                                <!-- Nested replies will be dynamically added here -->
+                            </ul>
+                        </li>
+                    `);
+                    $(this).siblings('.reply-text').val('');
+                    $(this).parent('.reply-form').hide();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
