@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <h1 id="head"
+        style="display: grid; text-align: center; font-style: italic; color: rgb(51, 173, 201); padding: 4rem;"> A yes
+        letter </h1>
+    <div style="text-align: center;">
+        <button type="button" class="btn btn-outline-danger btnno" value="0">No</button>
+        <button type="button" class="btn btn-outline-success btnyes" value="1">Yes</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.btnno').mouseover(function () {
+                
+                $('.btnno').text('Yes');
+                $('.btnyes').text('No');
+                // let noText = noButton.text();
+                // let yesText = yesButton.text();
+
+                // noButton.text(yesText);
+                // noButton.removeClass('btn-outline-danger').addClass('btn-outline-success');
+                // yesButton.text(noText);
+                // yesButton.removeClass('btn-outline-success').addClass('btn-outline-danger');
+            });
+
+            $('.btnyes').mouseover(function () {
+                $('.btnyes').text('Yes');
+                $('.btnno').text('No');
+            })
+            
+            $('.btnno').click(function (e) {
+                e.preventDefault();
+                alert('Yes button clicked');
+            });
+
+            
+            $('.btnyes').click(function () {
+                alert('Yes button clicked');
+            });
+        });
+    </script>
+</body>
+
+</html>
