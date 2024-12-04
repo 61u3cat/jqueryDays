@@ -10,8 +10,11 @@
 
 <body>
     <h1 id="head"
-        style="display: grid; text-align: center; font-style: italic; color: rgb(51, 173, 201); padding: 4rem;"> A yes
-        letter </h1>
+        style="display: grid; text-align: center; font-style: italic; color: rgb(8, 70, 84); padding: 4rem;"> A Yes
+        letter
+        <h2 id="head"
+            style="display: grid; text-align: center; font-style: italic; color: rgb(201, 51, 181); padding: 4rem;"> Do you love me? </h2>
+    </h1>
     <div style="text-align: center;">
         <button type="button" class="btn btn-outline-danger btnno" value="0">No</button>
         <button type="button" class="btn btn-outline-success btnyes" value="1">Yes</button>
@@ -21,7 +24,7 @@
     <script>
         $(document).ready(function () {
             $('.btnno').mouseover(function () {
-                
+
                 $('.btnno').text('Yes');
                 $('.btnyes').text('No');
                 // let noText = noButton.text();
@@ -37,15 +40,15 @@
                 $('.btnyes').text('Yes');
                 $('.btnno').text('No');
             })
-            
+
             $('.btnno').click(function (e) {
                 e.preventDefault();
-                alert('Yes button clicked');
+                alert('Thanks for your love');
             });
 
-            
+
             $('.btnyes').click(function () {
-                alert('Yes button clicked');
+                alert('Thanks for your love');
             });
         });
     </script>
